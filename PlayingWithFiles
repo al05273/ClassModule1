@@ -1,0 +1,63 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+
+public class PlayingWithFiles {
+
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		File f = new File("src/PlayingWithFiles.java");
+		System.out.println("does this file exist? " + f.exists());
+		System.out.println(f.getAbsolutePath());
+		
+		BufferedWriter bw = Files.newBufferedWriter(Paths.get("temp2.txt"),StandardOpenOption.CREATE);
+		bw.write("bugs");
+		bw.newLine();
+		bw.write("bunny");
+		bw.newLine();
+		bw.write("80");
+		bw.newLine();
+		bw.write("100");
+		bw.newLine();
+		bw.write("70");
+		bw.newLine();
+		bw.write("Daffy");
+		bw.newLine();
+		bw.write("Duck");
+		bw.newLine();
+		bw.write("100");
+		bw.newLine();
+		bw.write("90");
+		bw.newLine();
+		bw.write("90");
+		
+		bw.close();
+		
+		BufferedReader br = Files.newBufferedReader(Paths.get("temp2.txt"));
+		String line = br.readLine();
+		int sum = 0;
+		int i = 0;
+		while(line!=null) {
+			String fname, lname;
+			int score1, score2, score3;
+			fname = line;
+			lname = br.readLine();
+			score1 = Integer.parseInt(br.readLine());
+			score2 = Integer.parseInt(br.readLine());
+			score3 = Integer.parseInt(br.readLine());
+			System.out.println(fname + " " + lname + " scored " + score1 + " on Test 1, " + score2 + " on Test 2, and " + score3 + " on Test 3, for an average of "+ (score1 + score2 + score3)/3);
+			line = br.readLine();
+			sum+=(score1 + score2 + score3);
+			i+=3;
+		}
+		System.out.println("The average is " + sum/i);
+		br.close();
+		
+
+	}
+
+}
